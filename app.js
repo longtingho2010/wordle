@@ -180,21 +180,23 @@ const changeColor = () => {
   const rowWord = document.querySelector(`#guessRow-${currentRow}`).childNodes;
   let checkWordle = wordle;
   const guess = [];
+  console.log("guess", guess);
+  console.log("checkWordle", checkWordle);
 
   rowWord.forEach((word) => {
     guess.push({ letter: word.getAttribute("data"), color: "grey" });
   });
 
-  guess.forEach((guess, i) => {
-    if (guess.letter == wordle[i]) {
-      guess.color = "green";
+  guess.forEach((guess) => {
+    if (checkWordle.includes(guess.letter)) {
+      guess.color = "yellow";
       checkWordle = checkWordle.replace(guess.letter, "");
     }
   });
 
-  guess.forEach((guess) => {
-    if (checkWordle.includes(guess.letter)) {
-      guess.color = "yellow";
+  guess.forEach((guess, i) => {
+    if (guess.letter == wordle[i]) {
+      guess.color = "green";
       checkWordle = checkWordle.replace(guess.letter, "");
     }
   });
@@ -213,4 +215,7 @@ const changeColor = () => {
       //Both is Wrong
     }, 500 * i);
   });
+
+  console.log("guess", guess);
+  console.log("checkWordle", checkWordle);
 };
